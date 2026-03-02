@@ -1,0 +1,63 @@
+{
+  "expo": {
+    "name": "UBMS Driver",
+    "slug": "ubms-driver",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/driver-icon.png",
+    "scheme": "ubms-driver",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AIzaSyBym8ra9Gj5Yxhef0BSkuNzyAHJq5lyH5A"
+      }
+    },
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBym8ra9Gj5Yxhef0BSkuNzyAHJq5lyH5A"
+        }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.kimclarat.ubmsdriver"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/images/driver-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to track your bus location for passengers."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3abe3fd8-8a2a-4c18-81a4-16666897e02c"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3abe3fd8-8a2a-4c18-81a4-16666897e02c"
+      }
+    },
+    "owner": "kimclarat"
+  }
+}

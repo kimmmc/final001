@@ -1,0 +1,157 @@
+@startuml Bus Tracking System Architecture
+
+skinparam backgroundColor #F8F9FA
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+' Color definitions
+skinparam package {
+  BackgroundColor #E3F2FD
+  BorderColor #1976D2
+}
+
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #424242
+}
+
+skinparam note {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+
+title **Bus Tracking System - System Architecture**
+
+' Client Layer
+package "📱 Client Applications" #E8F5E8 {
+  component [Passenger Mobile App] as passenger #C8E6C9
+  component [Driver Mobile App] as driver #C8E6C9
+  component [Admin Dashboard] as admin #C8E6C9
+}
+
+' Backend Layer - Organized by flow
+package "🔧 Backend Services" #E3F2FD {
+  package "🛡️ API Gateway" #FFF3E0 {
+    component [Express.js Server] as server #FFE0B2
+    component [Authentication] as auth #FFE0B2
+    component [Rate Limiter] as rateLimit #FFE0B2
+  }
+  
+  package "⚙️ Business Logic" #F3E5F5 {
+    component [Bus Management] as busService #E1BEE7
+    component [Route Management] as routeService #E1BEE7
+    component [User Management] as userService #E1BEE7
+    component [Location Tracking] as locationService #E1BEE7
+    component [Prediction Service] as predictionService #E1BEE7
+  }
+  
+  package "⚡ Real-time Engine" #FFF8E1 {
+    component [Socket.io Service] as socket #FFECB3
+    component [ETA Calculator] as eta #FFECB3
+  }
+}
+
+' External Services Layer
+package "🌐 External Services" #FCE4EC {
+  component [Google Maps API] as maps #F8BBD9
+  component [MongoDB Atlas] as db #F8BBD9
+}
+
+' ML/AI Layer
+package "🤖 ML/AI Services" #E0F2F1 {
+  component [Traffic Prediction Model] as ml #B2DFDB
+}
+
+' Data Flow - Client to API Gateway
+passenger --> server : HTTP/WebSocket
+driver --> server : HTTP/WebSocket
+admin --> server : HTTP
+
+' API Gateway to Business Logic
+server --> auth : JWT Validation
+server --> rateLimit : Rate Control
+server --> busService : Bus Operations
+server --> routeService : Route Operations
+server --> userService : User Operations
+server --> locationService : Location Updates
+server --> predictionService : Predictions
+
+' Real-time Flow
+passenger --> socket : WebSocket Connection
+driver --> socket : WebSocket Connection
+socket --> eta : Real-time ETA
+
+' Business Logic to External Services
+locationService --> maps : Google Maps API
+predictionService --> ml : ML Predictions
+server --> db : MongoDB Operations
+
+' Technology Stack - Organized by layer
+note right of passenger
+  **Passenger App**
+  • React Native/Expo
+  • TypeScript
+  • Google Maps
+  • Real-time Tracking
+end note
+
+note right of driver
+  **Driver App**
+  • React Native/Expo
+  • Location Services
+  • Real-time Updates
+  • Route Navigation
+end note
+
+note right of admin
+  **Admin Dashboard**
+  • React + TypeScript
+  • Vite + Recharts
+  • Analytics Dashboard
+  • System Management
+end note
+
+note right of server
+  **API Gateway**
+  • Node.js + Express
+  • TypeScript + MongoDB
+  • JWT Authentication
+  • Socket.io
+  • Rate Limiting
+end note
+
+note right of ml
+  **ML Services**
+  • Python + Scikit-learn
+  • Traffic Prediction
+  • ETA Calculation
+  • Real-time Analytics
+end note
+
+' External Services Notes
+note top of maps
+  **External APIs**
+  • Location Services
+  • Geocoding
+  • Route Optimization
+end note
+
+note top of db
+  **Database**
+  • MongoDB Atlas
+  • Cloud Storage
+  • Real-time Sync
+end note
+
+' System Flow Notes
+note bottom of server
+  **System Flow:**
+  1. Client requests → API Gateway
+  2. Authentication & Rate Limiting
+  3. Business Logic Processing
+  4. Real-time Updates via WebSocket
+  5. External API Integration
+  6. Data Persistence
+end note
+
+@enduml 

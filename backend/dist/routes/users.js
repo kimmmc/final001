@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const userController_1 = require("../controllers/userController");
+const auth_1 = require("../middleware/auth");
+const validation_1 = require("../middleware/validation");
+const router = express_1.default.Router();
+router.get('/', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getAllUsers);
+router.get('/drivers', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getDrivers);
+router.get('/regular', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getRegularUsers);
+router.get('/stats', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getUserStats);
+router.get('/:id', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getUserById);
+router.patch('/:id/status', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.updateUserStatus);
+router.patch('/:id/role', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.updateUserRole);
+router.delete('/:id', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.deleteUser);
+router.post('/', auth_1.authenticate, (0, auth_1.authorize)('admin'), validation_1.validateSignup, userController_1.createUser);
+router.get('/weekly-activity', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getWeeklyActivity);
+router.get('/recent-activity', auth_1.authenticate, (0, auth_1.authorize)('admin'), userController_1.getRecentActivity);
+exports.default = router;

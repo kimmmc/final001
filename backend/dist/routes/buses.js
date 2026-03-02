@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const busController_1 = require("../controllers/busController");
+const auth_1 = require("../middleware/auth");
+const validation_1 = require("../middleware/validation");
+const router = express_1.default.Router();
+router.post('/', auth_1.authenticate, (0, auth_1.authorize)('admin'), validation_1.validateBus, busController_1.createBus);
+router.get('/', busController_1.getAllBuses);
+router.get('/admin/all', auth_1.authenticate, (0, auth_1.authorize)('admin'), busController_1.getAllBusesForAdmin);
+router.get('/driver/my-bus', auth_1.authenticate, (0, auth_1.authorize)('driver'), busController_1.getDriverBus);
+router.get('/driver/check-assignment', auth_1.authenticate, (0, auth_1.authorize)('driver'), busController_1.checkDriverBusAssignment);
+router.post('/reassign', auth_1.authenticate, (0, auth_1.authorize)('admin'), busController_1.reassignBusToDriver);
+router.get('/:id', busController_1.getBusById);
+router.put('/:id', auth_1.authenticate, (0, auth_1.authorize)('admin'), busController_1.updateBus);
+router.delete('/:id', auth_1.authenticate, (0, auth_1.authorize)('admin'), busController_1.deleteBus);
+exports.default = router;
