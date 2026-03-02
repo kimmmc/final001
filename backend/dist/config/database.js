@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectDB = async () => {
     try {
-        const mongoURI = 'mongodb://localhost:27017/ubmsdb';
+        const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://kimclarat23_db_user:qFYOTf3BfF6zDWQE@final.y7h2fks.mongodb.net/?appName=final';
         await mongoose_1.default.connect(mongoURI);
         console.log('MongoDB connected successfully');
     }

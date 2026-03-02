@@ -15,7 +15,7 @@ const routeDestinationMappings = {
 };
 const updateRouteDestinations = async () => {
     try {
-        const mongoURI = 'mongodb://localhost:27017/ubmsdb';
+        const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://kimclarat23_db_user:qFYOTf3BfF6zDWQE@final.y7h2fks.mongodb.net/?appName=final';
         await mongoose_1.default.connect(mongoURI);
         console.log('Connected to MongoDB');
         const routes = await Route_1.default.find({});
