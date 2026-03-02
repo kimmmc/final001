@@ -232,7 +232,7 @@ const startServer = async () => {
     startLocationScheduler();
     startLocationHistoryCleanup();
 
-    server.listen(PORT, () => {
+    server.listen(PORT as number, '0.0.0.0', () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📚 API Documentation: http://localhost:${PORT}/api-docs`);
       console.log(`🔍 Health Check: http://localhost:${PORT}/health`);
