@@ -2,7 +2,7 @@ class ApiService {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+    this.baseURL = import.meta.env.VITE_API_URL || 'https://final001-1.onrender.com/api';
     console.log('Admin API Service initialized with URL:', this.baseURL);
   }
 

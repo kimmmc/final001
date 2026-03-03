@@ -2,12 +2,12 @@ import { Platform } from 'react-native';
 
 // API Configuration for Driver App
 export const API_CONFIG = {
-  // Backend API URL - using local backend
+  // Backend API URL - using production backend
   BASE_URL: Platform.select({
-    ios: 'http://192.168.1.91:5001/api',
-    android: 'http://10.0.2.2:5001/api',
-    web: 'http://localhost:5001/api',
-    default: 'http://localhost:5001/api',
+    ios: 'https://final001-1.onrender.com/api',
+    android: 'https://final001-1.onrender.com/api',
+    web: 'https://final001-1.onrender.com/api',
+    default: 'https://final001-1.onrender.com/api',
   }),
 
   // Request timeout in milliseconds
@@ -20,5 +20,5 @@ export const API_CONFIG = {
 
 // Environment-specific configurations
 export const getApiUrl = () => {
-  return API_CONFIG.BASE_URL || 'http://localhost:5001/api';
+  return API_CONFIG.BASE_URL || 'https://final001-1.onrender.com/api';
 };

@@ -12,10 +12,6 @@
       "supportsTablet": true,
       "config": {
         "googleMapsApiKey": "AIzaSyBym8ra9Gj5Yxhef0BSkuNzyAHJq5lyH5A"
-      },
-      "bundleIdentifier": "com.kimclarat.ubms",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -54,14 +50,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/a7e07b76-667c-4a78-aaa1-435490d69cc8"
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "a7e07b76-667c-4a78-aaa1-435490d69cc8"
-      }
-    },
-    "owner": "kimclarat"
+      "url": "https://u.expo.dev/53458e2e-487a-4590-8a65-79b0cfd81c03"
+    }
   }
 }
